@@ -16,6 +16,9 @@ export default {
     email() {
       return faker.internet.email();
     },
+    imageUrl() {
+      return faker.internet.avatar();
+    },
     role() {
       return faker.random.arrayElement(['admin', 'user']);
     },

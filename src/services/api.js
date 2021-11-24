@@ -1,7 +1,13 @@
 import axios from 'axios';
 
+const url = {
+  development: 'http://localhost:3000/api',
+  production: 'https://api.example.com/api',
+  test: '/api',
+};
+
 const api = axios.create({
-  baseURL: 'http://localhost:3000/api',
+  baseURL: url[process.env.NODE_ENV],
 });
 
 export { api };

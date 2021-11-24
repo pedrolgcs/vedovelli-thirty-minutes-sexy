@@ -1,32 +1,30 @@
-import { useState, useEffect } from 'react';
+import { Outlet, ReactLocation, Router } from 'react-location';
 
-// services
-import { api } from './services/api';
+// routes
+import { routes } from './routes';
 
-function App() {
-  const [users, setUsers] = useState([]);
+// components
+import { Header } from './common/components/Header';
 
-  useEffect(() => {
-    async function loadUsers() {
-      try {
-        const response = await api.get('/users');
+// inicialize
+const location = new ReactLocation();
 
-        setUsers(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-
-    loadUsers();
-  }, []);
-
-  console.log(users);
-
+export default function App() {
   return (
-    <>
-      <h1>Hello World</h1>
-    </>
+    <Router location={location} routes={routes}>
+      <div className="min-h-full">
+        <Header />
+
+        <main>
+          {/* content */}
+          <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+            <div className="px-4 py-6 sm:px-0">
+              <Outlet />
+            </div>
+          </div>
+          {/* endContent */}
+        </main>
+      </div>
+    </Router>
   );
 }
-
-export default App;
