@@ -1,13 +1,8 @@
-import { Outlet, ReactLocation, Router } from 'react-location';
-
 // routes
-import { routes } from './routes';
+import { routes, location, Outlet, Router } from './routes';
 
 // components
 import { Header } from './common/components/Header';
-
-// inicialize
-const location = new ReactLocation();
 
 export default function App() {
   return (

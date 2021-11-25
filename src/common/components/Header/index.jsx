@@ -2,13 +2,16 @@ import { Fragment, useEffect, useState } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline';
 
+// routes
+import { Link } from '../../../routes';
+
 // services
 import { api } from '../../../services/api';
 
 const navigation = [
-  { name: 'Dashboard', href: '/', current: true },
-  { name: 'Users', href: '/users', current: false },
-  { name: 'Products', href: '/products', current: false },
+  { name: 'Dashboard', href: '/' },
+  { name: 'Users', href: '/users' },
+  { name: 'Products', href: '/products' },
 ];
 
 const userNavigation = [
@@ -51,19 +54,16 @@ function Header() {
                   <div className="hidden md:block">
                     <div className="ml-10 flex items-baseline space-x-4">
                       {navigation.map((item) => (
-                        <a
+                        <Link
                           key={item.name}
-                          href={item.href}
-                          className={classNames(
-                            item.current
-                              ? 'bg-gray-900 text-white'
-                              : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                            'px-3 py-2 rounded-md text-sm font-medium'
-                          )}
-                          aria-current={item.current ? 'page' : undefined}
+                          to={item.href}
+                          getActiveProps={() => ({
+                            className: 'bg-gray-900 text-white',
+                          })}
+                          className="text-gray-300 hover:bg-gray-700 hover:text-whit px-3 py-2 rounded-md text-sm font-medium"
                         >
                           {item.name}
-                        </a>
+                        </Link>
                       ))}
                     </div>
                   </div>
