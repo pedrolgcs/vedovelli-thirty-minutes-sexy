@@ -1,25 +1,35 @@
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
+
 // routes
 import { routes, location, Outlet, Router } from './routes';
 
 // components
 import { Header } from './common/components/Header';
 
+// inicialize
+const queryClient = new QueryClient();
+
 export default function App() {
   return (
-    <Router location={location} routes={routes}>
-      <div className="min-h-full">
-        <Header />
+    <QueryClientProvider client={queryClient}>
+      <Router location={location} routes={routes}>
+        <div className="min-h-full">
+          <Header />
 
-        <main>
-          {/* content */}
-          <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-            <div className="px-4 py-6 sm:px-0">
-              <Outlet />
+          <main>
+            {/* content */}
+            <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+              <div className="px-4 py-6 sm:px-0">
+                <Outlet />
+              </div>
             </div>
-          </div>
-          {/* endContent */}
-        </main>
-      </div>
-    </Router>
+            {/* endContent */}
+          </main>
+        </div>
+      </Router>
+
+      <ReactQueryDevtools />
+    </QueryClientProvider>
   );
 }

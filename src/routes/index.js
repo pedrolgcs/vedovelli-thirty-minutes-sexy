@@ -1,33 +1,22 @@
 import { ReactLocation, Outlet, Router, Link, useMatch } from 'react-location';
 
-// services
-import { api } from '../services/api';
-
-// pages
-import { Dashboard } from '../pages/Dashboard';
-import { Users } from '../pages/Users';
-import { Products } from '../pages/Products';
-
+// inicialize
 const location = new ReactLocation();
 
 const routes = [
   {
     path: '/',
-    element: <Dashboard />,
+    element: () =>
+      import('../pages/Dashboard').then((module) => <module.Dashboard />),
   },
   {
     path: '/users',
-    element: <Users />,
-    loader: async () => {
-      const { data } = await api.get('/users');
-      return { users: data.users };
-    },
-    pendingElement: async () => <div>Loading...</div>,
-    pendingMs: 300,
+    element: () => import('../pages/Users').then((module) => <module.Users />),
   },
   {
     path: '/products',
-    element: <Products />,
+    element: () =>
+      import('../pages/Products').then((module) => <module.Products />),
   },
 ];
 
