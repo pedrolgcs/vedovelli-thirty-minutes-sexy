@@ -22,7 +22,9 @@
   "scripts": {
     "start": "craco start",
     "build": "craco build",
-    "test": "craco test"
+    "test": "craco test",
+    "storybook": "start-storybook -p 6006 -s public",
+    "build-storybook": "build-storybook -s public"
   },
   "eslintConfig": {
     "extends": [
@@ -31,7 +33,14 @@
     ],
     "rules": {
       "import/no-anonymous-default-export": "off"
-    }
+    },
+    "overrides": [
+      {
+        "files": [
+          "**/*.stories.*"
+        ]
+      }
+    ]
   },
   "browserslist": {
     "production": [
@@ -46,6 +55,13 @@
     ]
   },
   "devDependencies": {
+    "@storybook/addon-actions": "^6.4.0",
+    "@storybook/addon-essentials": "^6.4.0",
+    "@storybook/addon-links": "^6.4.0",
+    "@storybook/node-logger": "^6.4.0",
+    "@storybook/preset-create-react-app": "^3.2.0",
+    "@storybook/react": "^6.4.0",
+    "babel-loader": "8.1.0",
     "autoprefixer": "^9",
     "faker": "^5.5.3",
     "miragejs": "^0.1.42",

@@ -1,5 +1,8 @@
-// components
+// containers
 import { Card } from '../../common/containers/Users/Card';
+
+// components
+import { Spinner } from '../../common/components';
 
 // hooks
 import { useUsers } from '../../hooks/useUsers';
@@ -7,7 +10,13 @@ import { useUsers } from '../../hooks/useUsers';
 function Users() {
   const { data: users, isLoading, isError } = useUsers();
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading)
+    return (
+      <div className="w-ful h-56 flex flex-wrap content-center justify-center">
+        <Spinner />
+      </div>
+    );
+
   if (isError) return <p>Error</p>;
 
   return (

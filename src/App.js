@@ -1,3 +1,4 @@
+import React from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 
@@ -5,7 +6,7 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import { routes, location, Outlet, Router } from './routes';
 
 // components
-import { Header } from './common/components/Header';
+import { Header } from './common/components';
 
 // inicialize
 const queryClient = new QueryClient();

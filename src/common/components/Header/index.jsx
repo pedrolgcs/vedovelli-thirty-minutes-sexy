@@ -36,6 +36,10 @@ function Header() {
     loadUser();
   }, []);
 
+  useEffect(() => {
+    console.log()
+  }, []);
+
   return (
     <>
       <Disclosure as="nav" className="bg-gray-800">

@@ -1,5 +1,8 @@
-// components
+// containers
 import { Card } from '../../common/containers/Products/Card';
+
+// components
+import { Spinner } from '../../common/components';
 
 // hooks
 import { useProducts } from '../../hooks/useProducts';
@@ -7,7 +10,15 @@ import { useProducts } from '../../hooks/useProducts';
 function Products() {
   const { data: products, isLoading, isError } = useProducts();
 
-  if (isLoading) return <p>Loading...</p>;
+  // Loading
+  if (isLoading)
+    return (
+      <div className="w-ful h-56 flex flex-wrap content-center justify-center">
+        <Spinner />
+      </div>
+    );
+
+  // Error
   if (isError) return <p>Error</p>;
 
   return (
